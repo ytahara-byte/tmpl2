@@ -1,0 +1,14 @@
+{
+    "name": "ytahara-byte/tmpl2",
+    "description": "A lightweight PHP template engine",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tmpl2\\": "src/"
+        }
+    },
+    "require": {
+    	"php": ">=7.4"
+    }
+}
