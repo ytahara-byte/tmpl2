@@ -87,41 +87,37 @@ PHP:
 
 ## Character Encoding / Escaping
 
-htmlspecialchars
-default:
- flag (\ENT_QUOTES | ENT_SUBSTITUTE)
- encoding UTF-8
+### htmlspecialchars
 
-change:
-$tmpl->setquotes(int flag);
-$tmpl->setencoding('SJIS-win');
+#### default:
+    flag (\ENT_QUOTES | ENT_SUBSTITUTE)
+    encoding UTF-8
 
-
+#### change function:
+    $tmpl->setquotes(int flag);
+    $tmpl->setencoding('SJIS-win');
 
 ## Public API
 
 ### __construct(string $filename = "")
-Creates a Tmpl2 instance.
-
-PHP souce
-$tmpl = new Tmpl2('template.html');
-    or
-$tmpl = new Tmpl2();
-$tmpl->loadTemplate('template.html');
-    or
-$tmpl = new Tmpl2();
-$tmpl->MemoryTmpl('<h1>%TITLE%</h1>');
-
-
+    Creates a Tmpl2 instance.
+### PHP souce
+    $tmpl = new Tmpl2('template.html');
+#### or
+    $tmpl = new Tmpl2();
+    $tmpl->loadTemplate('template.html');
+#### or
+    $tmpl = new Tmpl2();
+    $tmpl->MemoryTmpl('<h1>%TITLE%</h1>');
 
 ### assign(string $name, $value)
-Assigns a value to a template variable.
+    Assigns a value to a template variable.
 
-PHP souce:
-$tmpl->assign('TITLE', 'Hello World');
+### PHP souce:
+    $tmpl->assign('TITLE', 'Hello World');
 
-Template:
-<h1>%TITLE%</h1>
+### Template:
+    <h1>%TITLE%</h1>
 
 ### assign_def(string $name)
 Defines a variable for ifdef / ifndef.
@@ -197,3 +193,4 @@ See `HISTORY.md` for details.
 
 ## License
 
+See `LICENSE` for details.
