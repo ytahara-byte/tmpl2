@@ -425,9 +425,6 @@ class Tmpl2
 	/* 名前変更 */
 	/** @var list<ConditionBlock> */
 	private array $conditionBlocks = [];
-
-
-
 	// コンストラクタ
 	public function __construct(
 		string $filename = '',

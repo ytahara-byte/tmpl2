@@ -1,0 +1,3 @@
+<!-- tmpl:loop %DATA% -->
+"%MONTH% %YEAR%",%DEBIT%,%CREDIT%
+<!-- tmpl:endloop %DATA% -->
