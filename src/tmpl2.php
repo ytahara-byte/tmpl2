@@ -61,17 +61,8 @@ final class Directive
         $this->type = $type;
         $this->variableName = $variableName;
     }
-
-    public function type(): string
-    {
-        return $this->type;
-    }
-
-    public function variableName(): ?string
-    {
-        return $this->variableName;
-    }
-
+    public function type(): string { return $this->type; }
+    public function variableName(): ?string { return $this->variableName; }
     public function isCondition(): bool
     {
         return in_array(
@@ -85,13 +76,11 @@ final class Directive
             true
         );
     }
-
     public function isLocalCondition(): bool
     {
         return $this->type === self::IFLDEF
             || $this->type === self::IFLNDEF;
     }
-
     public static function reverse(string $type): string
     {
         switch ($type) {
@@ -107,7 +96,6 @@ final class Directive
             case self::IFLNDEF:
                 return self::IFLDEF;
         }
-
         throw new LogicException(
             'Cannot reverse directive type: ' . $type
         );
@@ -141,37 +129,14 @@ final class ConditionBlock
         $this->depth = $depth;
         $this->elseBranch = $elseBranch;
     }
-
-    public function type(): string
-    {
-        return $this->type;
-    }
-
-    public function variableName(): string
-    {
-        return $this->variableName;
-    }
-
-    public function startLine(): int
-    {
-        return $this->startLine;
-    }
-
-    public function elseLine(): ?int
-    {
-        return $this->elseLine;
-    }
-
-    public function endLine(): ?int
-    {
-        return $this->endLine;
-    }
-
-    public function depth(): int
-    {
-        return $this->depth;
-    }
-
+    public function type(): string { return $this->type; }
+    public function variableName(): string { return $this->variableName; }
+    public function startLine(): int { return $this->startLine; }
+    public function elseLine(): ?int { return $this->elseLine; }
+    public function endLine(): ?int { return $this->endLine; }
+    public function depth(): int { return $this->depth; }
+    public function isClosed(): bool { return $this->endLine !== null; }
+    public function isElseBranch(): bool { return $this->elseBranch; }
     public function setElseLine(int $line): void
     {
         if ($this->elseLine !== null) {
@@ -197,19 +162,9 @@ final class ConditionBlock
 
         $this->endLine = $line;
     }
-
-    public function isClosed(): bool
-    {
-        return $this->endLine !== null;
-    }
-    public function isElseBranch(): bool
-    {
-        return $this->elseBranch;
-    }
 }
 /*
-arDefStack
-現在解析中の ifdef／ifndef ブロックの入れ子状態
+arDefStack ifdef／ifndef ブロックの入れ子状態
 */
 final class ConditionFrame
 {
@@ -223,26 +178,10 @@ final class ConditionFrame
         $this->block = $block;
         $this->blockIndex = $blockIndex;
     }
-
-    public function block(): ConditionBlock
-    {
-        return $this->block;
-    }
-    public function blockIndex(): int
-    {
-        return $this->blockIndex;
-    }
-
-    public function variableName(): string
-    {
-        return $this->block->variableName();
-    }
-
-
-    public function type(): string
-    {
-        return $this->block->type();
-    }
+    public function block(): ConditionBlock { return $this->block; }
+    public function blockIndex(): int { return $this->blockIndex; }
+    public function variableName(): string { return $this->block->variableName(); }
+    public function type(): string { return $this->block->type(); }
 }
 
 /**
@@ -251,17 +190,11 @@ final class ConditionFrame
  */
 final class LoopInstance
 {
-    /** @var string */
     private $name;
-    /** @var string */
     private $rootName;
-    /** @var string */
     private $parentName;
-    /** @var int */
     private $parentRowNumber;
-    /** @var int */
     private $depth;
-    /** @var int */
     private $rowCount;
 
     public function __construct(
@@ -279,7 +212,6 @@ final class LoopInstance
         $this->depth = $depth;
         $this->rowCount = $rowCount;
     }
-
     public function name(): string { return $this->name; }
     public function rootName(): string { return $this->rootName; }
     public function parentName(): string { return $this->parentName; }
@@ -294,14 +226,10 @@ final class LoopInstance
  */
 final class LoopRow
 {
-    /** @var LoopInstance */
     private $instance;
-    /** @var int */
     private $rowNumber;
-    /** @var array<string, string> */
     private $values;
 
-    /** @param array<string, string> $values */
     public function __construct(LoopInstance $instance, int $rowNumber, array $values)
     {
         $this->instance = $instance;
@@ -311,8 +239,6 @@ final class LoopRow
 
     public function instance(): LoopInstance { return $this->instance; }
     public function rowNumber(): int { return $this->rowNumber; }
-
-    /** @return array<string, string> */
     public function values(): array { return $this->values; }
 }
 
@@ -323,11 +249,8 @@ final class LoopRow
  */
 final class LoopFrame
 {
-    /** @var LoopInstance */
     private $instance;
-    /** @var int */
     private $rowNumber;
-    /** @var array<string, string> */
     private $currentValues = [];
 
     public function __construct(LoopInstance $instance, int $rowNumber = 1)
@@ -339,16 +262,8 @@ final class LoopFrame
     public function name(): string { return $this->instance->name(); }
     public function instance(): LoopInstance { return $this->instance; }
     public function rowNumber(): int { return $this->rowNumber; }
-
-    public function assign(string $key, string $value): void
-    {
-        $this->currentValues[$key] = $value;
-    }
-
-    public function define(string $key): void
-    {
-        $this->currentValues[$key] = '';
-    }
+    public function assign(string $key, string $value): void { $this->currentValues[$key] = $value; }
+    public function define(string $key): void { $this->currentValues[$key] = ''; }
 
     public function commitRow(): LoopRow
     {
@@ -393,38 +308,13 @@ final class HtmlLoopBlock
         $this->depth = $depth;
     }
 
-    public function name(): string
-    {
-        return $this->name;
-    }
-    public function rootName(): string
-    {
-        return $this->rootName;
-    }
-    public function parentName(): string
-    {
-        return $this->parentName;
-    }
-
-    public function startLine(): int
-    {
-        return $this->startLine;
-    }
-
-    public function endLine(): ?int
-    {
-        return $this->endLine;
-    }
-
-    public function depth(): int
-    {
-        return $this->depth;
-    }
-
-    public function close(int $lineNumber): void
-    {
-        $this->endLine = $lineNumber;
-    }
+    public function name(): string { return $this->name; }
+    public function rootName(): string { return $this->rootName; }
+    public function parentName(): string { return $this->parentName; }
+    public function startLine(): int { return $this->startLine; }
+    public function endLine(): ?int { return $this->endLine; }
+    public function depth(): int { return $this->depth; }
+    public function close(int $lineNumber): void { $this->endLine = $lineNumber; }
 }
 
 /**
@@ -444,20 +334,9 @@ final class HtmlLoopFrame
         $this->blockIndex = $blockIndex;
     }
 
-    public function block(): HtmlLoopBlock
-    {
-        return $this->block;
-    }
-
-    public function blockIndex(): int
-    {
-        return $this->blockIndex;
-    }
-
-    public function name(): string
-    {
-        return $this->block->name();
-    }
+    public function block(): HtmlLoopBlock { return $this->block; }
+    public function blockIndex(): int { return $this->blockIndex; }
+    public function name(): string { return $this->block->name(); }
 }
 final class TemplateLine
 {
@@ -484,35 +363,12 @@ final class TemplateLine
         $this->cutOut = $cutOut;
     }
 
-    public function source(): string
-    {
-        return $this->source;
-    }
-
-    public function lineNumber(): int
-    {
-        return $this->lineNumber;
-    }
-
-    public function convertCount(): int
-    {
-        return $this->convertCount;
-    }
-
-    public function conditionBlockIndex(): int
-    {
-        return $this->conditionBlockIndex;
-    }
-
-    public function htmlLoopBlockIndex(): int
-    {
-        return $this->htmlLoopBlockIndex;
-    }
-
-    public function isCutOut(): bool
-    {
-        return $this->cutOut;
-    }
+    public function source(): string { return $this->source; }
+    public function lineNumber(): int { return $this->lineNumber; }
+    public function convertCount(): int { return $this->convertCount; }
+    public function conditionBlockIndex(): int { return $this->conditionBlockIndex; }
+    public function htmlLoopBlockIndex(): int { return $this->htmlLoopBlockIndex; }
+    public function isCutOut(): bool { return $this->cutOut; }
 }
 
 class Tmpl2
@@ -548,21 +404,15 @@ class Tmpl2
     /** @var list<LoopRow> */
     private array $arLoopValue = [];
 
-
     /** @var list<HtmlLoopFrame> */
     private array $arHtmlLoopStack = [];
-
     /** @var list<HtmlLoopBlock> */
     private array $arHtmlLoopList = [];
 
-
-
     /** @var list<TemplateLine> */
     private array $arHtmlTemp = [];
-
     /** @var list<TemplateLine> */
     private array $arHtmlTemp2 = [];
-
 
     /** @var array<string, true> */
     private array $arDefValue = [];
