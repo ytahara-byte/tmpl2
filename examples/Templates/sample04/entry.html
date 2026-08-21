@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+ <head>
+  <title>%TITLE%</title>
+ </head>
+<style>
+.RED {
+  color : red;
+}  
+
+</style>
+
+
+<body>
+
+<h1>%TITLE%</h1>
+<form name="form1" method="post" action="conf.php">
+<p>Name:*<input type="text" name="name" value="%NAME%"></p>
+<!-- tmpl:ifdef %DEF_ERROR_NAME% -->
+<p class="RED">Name not found</p>
+<!-- tmpl:endif -->
+
+<p>ZIP:*<input type="text" name="zip1" size="4" value="%ZIP1%">-
+    <input type="text" name="zip2" size="5" value="%ZIP2%"></p>
+<!-- tmpl:ifdef %DEF_ERROR_ZIP% -->
+<p class="red">zip not found</p>
+<!-- tmpl:endif -->
+
+<p>FREF:*<select name="pref">
+<!-- tmpl:loop %LIST_PREF% -->
+<option value="%CODE%"%SELECT%>%NAME%</option>
+<!-- tmpl:endloop %LIST_PREF% -->
+</select></p>
+<!-- tmpl:ifdef %DEF_ERROR_PREF% -->
+<p class="red">Pref not found</p>
+<!-- tmpl:endif -->
+
+<p>Address:</p>
+  <p>*<input type="text" name="add1" value="%ADD1%"></p>
+<!-- tmpl:ifdef %DEF_ERROR_ADD1% -->
+<p class="red">Address not found</p>
+<!-- tmpl:endif -->
+  <p><input type="text" name="add2" value="%ADD2%"></p>
+<p>Gender:*
+<!-- tmpl:loop %LIST_SEX% -->
+ <input type="radio" name="sex" value="%CODE%"%CHECK%>%NAME%&nbsp;
+<!-- tmpl:endloop %LIST_SEX% -->
+</p>
+<!-- tmpl:ifdef %DEF_ERROR_SEX% -->
+<p class="red">Gender not found</p>
+<!-- tmpl:endif -->
+<p>EMAIL:*<input type="text" name="email" value="%EMAIL%"></p>
+<!-- tmpl:ifdef %DEF_ERROR_EMAIL% -->
+<p class="red">E-MAIL not found</p>
+<!-- tmpl:endif -->
+<!-- tmpl:ifdef %DEF_ERROR_EMAIL2% -->
+<p class="red">E-MAIL not found</p>
+<!-- tmpl:endif -->
+<p>TEL:<input type="text" name="tel" value="%TEL%"></p>
+<p>REGIST:*<input type="checkbox" name="regi" value="%REGI_CODE1%"%REGI_CHECK1%>%REGI_VALUE1%</p>
+<!-- tmpl:ifdef %DEF_ERROR_REGI% -->
+<p class="red">non REGIST Check</p>
+<!-- tmpl:endif -->
+
+
+<input type="hidden" name="id" value="%ID%">
+<p><button type="submit" name="conf" value="1">&nbsp;OK&nbsp;</button></p>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+ <head>
+  <title>%TITLE%</title>
+ </head>
+<style>
+.RED {
+  color : red;
+}  
+
+</style>
+
+
+<body>
+
+<h1>%TITLE%</h1>
+<form name="form1" method="post" action="regist.php">
+<p>Name:<input type="hidden" name="name" value="%NAME%">%NAME%</p>
+
+<p>ZIP:<input type="hidden" name="zip1" size="4" value="%ZIP1%">
+    <input type="hidden" name="zip2" size="5" value="%ZIP2%">%ZIP1%-%ZIP2%</p>
+
+<p>FREF:<input type="hidden" name="pref" value="%PREF%">%PREF_TEXT%</p>
+
+
+<p>Address:</p>
+  <p><input type="hidden" name="add1" value="%ADD1%">%ADD1%</p>
+  <p><input type="hidden" name="add2" value="%ADD2%">%ADD2%</p>
+<p>Gender:<input type="hidden" name="sex" value="%SEX%">%SEX_TEXT%</p>
+<p>EMAIL:<input type="hidden" name="email" value="%EMAIL%">%EMAIL%</p>
+<p>TEL:<input type="hidden" name="tel" value="%TEL%">%TEL%</p>
+<p>REGIST:<input type="hidden" name="regi" value="%REGI%">%REGI_TEXT%</p>
+
+
+<input type="hidden" name="id" value="%ID%">
+<p><button type="submit" name="edit" value="1">&nbsp;PREV&nbsp;</button> <button type="submit" name="fine" value="1">&nbsp;OK&nbsp;</button></p>
+</form>
+
+</body>
+</html>

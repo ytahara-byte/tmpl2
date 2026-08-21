@@ -430,8 +430,8 @@ class Tmpl2
 		string $filename = '',
 		string $ocode = self::CHARACTERCODE
 	) {
-        $thia->loadTemplate($filename);
-		if ($icode !== '') {
+        $this->loadTemplate($filename);
+		if ($ocode !== '') {
 			$this->kcout = $ocode;
 		}
 	}

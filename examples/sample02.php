@@ -1,6 +1,7 @@
 <?php
 define( "TMPL_DIR", __DIR__ . '/Templates/');
-require_once(__DIR__ . '/../src/tmpl2.php');
+define( "DEF_LIBPATH" , __DIR__ . '/../src/')
+require_once(DEF_LIBPATH  . 'tmpl2.php');
 
 use Tmpl2\Tmpl2;
 
