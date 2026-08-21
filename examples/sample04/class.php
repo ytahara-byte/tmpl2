@@ -2,8 +2,7 @@
 define( "TMPL_FILE_DIR", __DIR__ . '/Templates/');
 
 if (!defined('DEF_TMPL2_PATH')) {
-define( "DEF_TMPL2_PATH" , __DIR__ . '/../src/');
-//define( "DEF_TMPL2_PATH" , './');
+define( "DEF_TMPL2_PATH" , __DIR__ . '../../src/');
 };
 
 require_once(DEF_TMPL2_PATH  . 'tmpl2.php');
