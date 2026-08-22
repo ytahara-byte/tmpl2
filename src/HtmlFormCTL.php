@@ -574,28 +574,28 @@ class HtmlFormCTL {
 						if (strlen($row->text()) == 0) {
 							$Errortbl[] = $row->templateName();
 						} else if (!preg_match("/^[0-9]+$/u", $row->text())) {
-							$Errortbl[] = $row->templateName() . "2";
+							$Errortbl[] = $row->templateName();
 						}
 						break;
 					case FieldDefinition::CHECK_NOEMAIL:
 						if (strlen($row->text()) == 0) {
 							$Errortbl[] = $row->templateName();
 						} else if (!preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/", $row->text())) {
-							$Errortbl[] = $row->templateName() . "2";
+							$Errortbl[] = $row->templateName();
 						}
 						break;
 					case FieldDefinition::CHECK_HIRAGANA:
 						if (strlen($row->text()) == 0) {
 							$Errortbl[] = $row->templateName();
 						} else if (!preg_match("/^[ぁ-ん 　]+$/u", $row->text())) {
-							$Errortbl[] = $row->templateName() . "2";
+							$Errortbl[] = $row->templateName();
 						}
 						break;
 					case FieldDefinition::CHECK_KANA:
 						if (strlen($row->text()) == 0) {
 							$Errortbl[] = $row->templateName();
 						} else if (!preg_match("/^[ァ-ヶー 　]+$/u", $row->text())) {
-							$Errortbl[] = $row->templateName() . "2";
+							$Errortbl[] = $row->templateName();
 						}
 						break;
 					default:
